@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title></title>
+  <link rel="stylesheet" href="css/style2.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+  <link rel="shortcut icon" href="favicon1.ico"/>
+  <link rel="stylesheet" href="admin/vendor/bootstrap/css/bootstrap.min.css">
+  <link href="admin/vendor/fonts/circular-std/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="admin/libs/css/style.css">
+  <link rel="stylesheet" href="admin/vendor/fonts/fontawesome/css/fontawesome-all.css">
+  <style>
+    	body{
+    		background: url("img/sea.jpg");
+  			height: 128vh;
+  			background-size: cover;
+  			background-position: center center; }
+
+    </style>
+</head>
+<body>
+<div class="collapse navbar-collapse " id="navbarSupportedContent">
+  <ul class="navbar-nav ml-auto navbar-right-top">
+    <li class="nav-item dropdown nav-user">
+      <a class="dropdown-item" href="index.html"><i class="fas fa-power-off mr-2"></i>Logout</a>
+    </li>
+  </ul>
+</div>
+<div class="client-details">
+  <form method="post" th:action="@{/booking}">
+    <input type="hidden" th:text="${currentCustomer.getCustomer_id()}+':'" name="currentId">
+    <h3 th:text="${currentCustomer.getFirstName()}+' '+${currentCustomer.getLastName()}"></h3>
+    <button type="submit" style="color: #d43f3a">Book now!</button>
+  </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 client-details-box" >
+        <div class="client-details-box-content" >
+          <h3>Client Personal Information</h3>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 client-details-box" >
+        <div class="client-details-box-content">
+          <h3>Client Itineraries Information</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <table class="table">
+    <thead>
+    <tr style="color: #d43f3a">
+      <th>ReferenceNumber</th>
+      <th>HotelName</th>
+      <th>Address</th>
+      <th>PhoneNumber</th>
+      <th>CheckInDate</th>
+      <th>CheckOutDate</th>
+      <th>Price</th>
+      <th>TypeOfRoom</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="itinerary:${currentItinerary}" style="color: #ce8483">
+      <td th:text="${itinerary.getReferenceNumber()}"></td>
+      <td th:text="${itinerary.getHotelName()}"></td>
+      <td th:text="${itinerary.getAddress()}"></td>
+      <td th:text="${itinerary.getPhone()}"></td>
+      <td th:text="${itinerary.getCheck_in_date()}"></td>
+      <td th:text="${itinerary.getCheck_out_date()}"></td>
+      <td th:text="${itinerary.getPrice()}"></td>
+      <td th:text="${itinerary.getRoomType()}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <table class="table">
+    <thead>
+    <tr style="color: #6f42c1">
+      <th>customer_id</th>
+      <th>firstName</th>
+      <th>lastName</th>
+      <th>phoneNumber</th>
+      <th>dataOfBirth</th>
+      <th>sex</th>
+      <th>email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="color: #8991d4">
+      <td th:text="${currentCustomer.getCustomer_id()}"></td>
+      <td th:text="${currentCustomer.getFirstName()}"></td>
+      <td th:text="${currentCustomer.getLastName()}"></td>
+      <td th:text="${currentCustomer.getPhoneNumber()}"></td>
+      <td th:text="${currentCustomer.getDateOfBirth()}"></td>
+      <td th:text="${currentCustomer.getSex()}"></td>
+      <td th:text="${currentCustomer.getEmail()}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="js/jquery-3.5.1.min.js"></script>
+</body>
+</html>

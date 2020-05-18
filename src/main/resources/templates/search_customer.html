@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="shortcut icon" href="favicon1.ico"/>
+
+	<style>
+		.table{ 
+			  
+			background-color: #F5F5F5; 
+			overflow: none;"
+		}
+	</style>
+</head>
+<body>
+<table cellpadding="0px" cellspacing="0px" class="table table-bordered" align="center">
+<thead>
+<h3 align="center">List of Data</h3>
+<form role="form" method="post" th:action="@{/searchCustomer}">
+<li class="nav-item">
+	<div id="custom-search" class="top-search-bar">
+		<input name="customer_id" class="form-control" type="text" placeholder="input customer id..">
+	</div>
+</li>
+	<button type="submit" >search</button>>
+</form>
+
+<tr>
+<th>ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Phone</th>
+<th>Date of Birth</th>
+<th>Sex</th>
+<th>Email</th>
+<th>Action</th>
+</tr>
+
+<tr>
+	<td th:text="${cid.getCustomer_id()}"></td>
+	<td th:text="${cid.getFirstName()}"></td>
+	<td th:text="${cid.getLastName()}"></td>
+	<td th:text="${cid.getPhoneNumber()}"></td>
+	<td th:text="${cid.getDateOfBirth()}"></td>
+	<td th:text="${cid.getSex()}"></td>
+	<td th:text="${cid.getEmail()}"></td>
+	<td>
+		<a th:if="${cid.getCustomer_id()!=null}" th:href="@{/customer/}+${cid.getCustomer_id()}" class="btn btn-success">Update</a>
+		<a th:if="${cid.getCustomer_id()!=null}" th:href="@{/deleteCustomer/}+${cid.getCustomer_id()}" class="btn btn-danger">Delete</a>
+	</td>
+</tr>
+</thead>
+</table>
+
+</body>
+</html>

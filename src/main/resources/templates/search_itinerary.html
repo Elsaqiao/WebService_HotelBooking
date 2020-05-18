@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="shortcut icon" href="favicon1.ico"/>
+	<style>
+		.table{ 
+			  
+			background-color: #F5F5F5; 
+			overflow: none;"
+		}
+	</style>
+</head>
+<body>
+<table cellpadding="0px" cellspacing="0px" class="table table-bordered" align="center">
+<thead>
+<h3 align="center">List of Data</h3>
+<form role="form" method="post" th:action="@{/searchItinerary}">
+	<li class="nav-item">
+		<div id="custom-search" class="top-search-bar">
+			<input name="referenceNumber" class="form-control" type="text" placeholder="input reference number..">
+		</div>
+	</li>
+	<button type="submit" >search</button>>
+</form>
+<tr><a th:href="@{/toaddItinerary}"><button type="button" class="btn btn-primary">Add New</button></a></tr>
+<tr>
+	<th>Reference Number</th>
+	<th>Customer Id</th>
+	<th>Hotel Name</th>
+	<th>Address</th>
+	<th>Phone</th>
+	<th>Check In Date</th>
+	<th>Check Out Date</th>
+	<th>Price</th>
+	<th>Room Type</th>
+	<th>Action</th>
+</tr>
+
+<tr>
+	<td th:text="${iid.getReferenceNumber()}"></td>
+	<td th:text="${iid.getCustomer_id()}"></td>
+	<td th:text="${iid.getHotelName()}"></td>
+	<td th:text="${iid.getAddress()}"></td>
+	<td th:text="${iid.getPhone()}"></td>
+	<td th:text="${iid.getCheck_in_date()}"></td>
+	<td th:text="${iid.getCheck_out_date()}"></td>
+	<td th:text="${iid.getPrice()}"></td>
+	<td th:text="${iid.getRoomType()}"></td>
+	<td>
+		<a th:if="${iid.getReferenceNumber()!=null}" th:href="@{/itinerary/}+${iid.getReferenceNumber()}" class="btn btn-success">Update</a>
+		<a th:if="${iid.getReferenceNumber()!=null}" th:href="@{/deleteItinerary/}+${iid.getReferenceNumber()}" class="btn btn-danger">Delete</a>
+	</td>
+</tr>
+</thead>
+</table>
+
+</body>
+</html>

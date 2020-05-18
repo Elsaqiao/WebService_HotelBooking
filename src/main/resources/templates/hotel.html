@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html class="no-js" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="utf-8">
+	<title>Room Booking System</title>
+	<link rel="stylesheet" href="css/style.css">
+		<link rel="shortcut icon" href="favicon1.ico"/>
+	<style>
+	.top-header {
+	  background-image: url("images/slider1.jpg");
+	  min-height: 600px;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	  position: relative;
+	  overflow: hidden;
+	  margin-top: -15px;
+	  margin-left: -10px;
+	  margin-right: -10px;
+}
+	#map{
+		height: 200px;
+		weigth:50%;
+	}
+	</style>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDXPKF8VBf5xQPQZy4T61Lz6FgPCawkW8&callback=initMap" async defer></script>
+	</head>
+<body>
+	<div class="top-header">
+	  <div class="container">
+	    <div class="topnav">
+		    <ul>
+		      <li><a href="#home" class="active">Home</a></li>
+		      <li><a th:href="@{/login}">Login</a></li>
+		      <li><a href="#hotel">Hotel</a></li>
+		  	</ul>
+	    </div>
+		  <div th:class="card" style="width: 18rem;">
+			  <img th:class="card-img-top" src="" alt=""/>
+			  <div th:class="center-body">
+				  <h3 th:text="${city}" th:value="${city}" th:id="city" th:class="card-title" align="center" style="color: white"/>
+				  <div th:class="card-text" align="center" >
+					  <img class="image-weather card-img-top text-center" src="" alt=""/>
+					  <p class="description-weather" style="color: white"></p>
+					  <p style="color: white">
+						  <strong>temperature :</strong><span th:class ="temp-weather"></span><br/>
+						  <strong>Max :</strong><span th:class="temp-max-weather"></span><br/>
+						  <strong>Min :</strong><span th:class="temp-min-weather"></span><br/>
+					  </p>
+				  </div>
+			  </div>
+		  </div>
+		  <div id="map"></div>
+		  <script>
+			  function initMap(){
+				  var options = {
+					  zoom : 8,
+					  center:{lat:40.7128, lng:-74.0060}}
+				  var map = new google.maps.Map(document.getElementById('map'),options)
+				  var marker = new google.maps.Marker({
+					  position:{lat:43.6047, lng:1.4442},
+					  map : map
+				  });
+
+			  }
+		  </script>
+	  </div>
+	</div>
+
+	<div id="hotel-section" style="margin-top: 50px;">
+		<div class="container">
+			<div class="row">
+			</div>
+		</div>
+	</div>
+	<a th:href="@{/login}">Booking now!</a>
+	<div class="footer">
+        <p>All rights reserved, &COPY; <a href="#">Hotel Room Booking System</a>.
+    </div>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script th:src="@{/js/Weather.js}"></script>
+	<script src="js/booking.js"></script>
+</body>
+</html>
